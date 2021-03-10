@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ServiceReference1;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using static ServiceReference1.CalculatorSoapClient;
 
 namespace Program3
 {
@@ -26,7 +28,10 @@ namespace Program3
             int a = 15;
             int b = 12;
 
-            Console.WriteLine(a + " + " + b + " = " + );
+            CalculatorSoapClient calculator = new CalculatorSoapClient(EndpointConfiguration.CalculatorSoap);
+
+            Task<int> res = calculator.AddAsync(a, b);
+            Console.WriteLine(a + " + " + b + " = " + res.Result);
         }
     }
 
